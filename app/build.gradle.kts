@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.rosh2.petcare"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.rosh2.petcare"
