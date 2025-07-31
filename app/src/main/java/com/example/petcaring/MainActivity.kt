@@ -31,7 +31,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.petcaring.ui.navigation.MainScreen
 import com.example.petcaring.ui.screens.PetViewModel
 
-
+// auth screen started
 enum class AuthScreen {
     LOGIN, SIGNUP, HOME
 }
