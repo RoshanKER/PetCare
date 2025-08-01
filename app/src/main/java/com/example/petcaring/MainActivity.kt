@@ -6,17 +6,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.petcaring.ui.auth.LoginScreen
 import com.example.petcaring.ui.auth.SignupScreen
 import com.example.petcaring.ui.theme.PetCaringTheme
@@ -31,7 +28,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.petcaring.ui.navigation.MainScreen
 import com.example.petcaring.ui.screens.PetViewModel
 
-// auth screen started
+
 enum class AuthScreen {
     LOGIN, SIGNUP, HOME
 }
@@ -50,21 +47,22 @@ class MainActivity : ComponentActivity() {
             val authViewModel: AuthViewModel = viewModel()
 
             PetCaringTheme(darkTheme = isDarkMode) {
-                    Scaffold(
-                        topBar = {
-                            TopAppBar(
-                                title = { Text("Pet Care") },
-                                actions = {
-                                    IconButton(onClick = { isDarkMode = !isDarkMode }) {
-                                        Icon(
-                                            imageVector = if (isDarkMode) Icons.Default.LightMode else Icons.Default.DarkMode,
-                                            contentDescription = "Toggle Theme"
-                                        )
-                                    }
+                Scaffold(
+                    topBar = {
+                        TopAppBar(
+                            title = { Text("Pet Care") },
+                            actions = {
+                                IconButton(onClick = { isDarkMode = !isDarkMode }) {
+                                    Icon(
+                                        imageVector = if (isDarkMode) Icons.Default.LightMode else Icons.Default.DarkMode,
+                                        contentDescription = "Toggle Theme"
+                                    )
                                 }
-                            )
-                        }
-                    ) { padding ->
+                            }
+                        )
+                    }
+                ) { padding ->
+                    Box(modifier = Modifier.padding(padding)) {
                         when (currentScreen) {
                             AuthScreen.LOGIN -> LoginScreen(
                                 viewModel = authViewModel,
@@ -78,7 +76,6 @@ class MainActivity : ComponentActivity() {
                                 onNavigateToLogin = { currentScreen = AuthScreen.LOGIN }
                             )
 
-//                            AuthScreen.HOME -> MainScreen()
                             AuthScreen.HOME -> {
                                 val user = authViewModel.loggedInUser.collectAsState().value
                                 user?.let {
@@ -87,11 +84,14 @@ class MainActivity : ComponentActivity() {
                                     MainScreen(userId = it.id)
                                 }
                             }
-
                         }
                     }
                 }
 
+            }
+
+
         }
+
     }
 }
