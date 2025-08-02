@@ -4,6 +4,8 @@ import android.app.TimePickerDialog
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
@@ -41,9 +43,9 @@ fun AppointmentScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
                 .padding(16.dp)
-        ) {
+                .verticalScroll(rememberScrollState())
 
-            Spacer(modifier = Modifier.height(12.dp))
+        ) {
 
             AppointmentCalendar(
                 appointments = appointments,
@@ -97,7 +99,10 @@ fun AppointmentList(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Column(modifier = Modifier.padding(12.dp)) {
-                        Text("Pet: ${pet?.name ?: "Unknown"}", style = MaterialTheme.typography.titleMedium)
+                        Text(
+                            "Pet: ${pet?.name ?: "Unknown"}",
+                            style = MaterialTheme.typography.titleMedium
+                        )
                         Text("Time: ${appointment.time}")
                         Text("Description: ${appointment.description}")
                     }
