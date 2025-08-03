@@ -72,7 +72,11 @@ class MainActivity : ComponentActivity() {
                                 onNavigateToSignup = { currentScreen = AuthScreen.SIGNUP }
                             )
 
-                            
+                            AuthScreen.SIGNUP -> SignupScreen(
+                                viewModel = authViewModel,
+                                onSignupSuccess = { currentScreen = AuthScreen.HOME },
+                                onNavigateToLogin = { currentScreen = AuthScreen.LOGIN }
+                            )
 
                             AuthScreen.HOME -> {
                                 val user = authViewModel.loggedInUser.collectAsState().value
