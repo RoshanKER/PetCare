@@ -66,6 +66,7 @@ class MainActivity : ComponentActivity() {
                 ) { padding ->
                     Box(modifier = Modifier.padding(padding)) {
                         when (currentScreen) {
+                            //LOGIN
                             AuthScreen.LOGIN -> LoginScreen(
                                 viewModel = authViewModel,
                                 onLoginSuccess = { currentScreen = AuthScreen.HOME },
