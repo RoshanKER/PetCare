@@ -78,7 +78,13 @@ class MainActivity : ComponentActivity() {
                                 onNavigateToLogin = { currentScreen = AuthScreen.LOGIN }
                             )
 
-                            
+                            AuthScreen.HOME -> {
+                                val user = authViewModel.loggedInUser.collectAsState().value
+                                user?.let {
+                                    val petViewModel: PetViewModel = viewModel()
+                                    petViewModel.userId = it.id
+                                    MainScreen(userId = it.id)
+                                }
                             }
                         }
                     }
