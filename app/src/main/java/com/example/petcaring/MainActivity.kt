@@ -61,6 +61,8 @@ class MainActivity : ComponentActivity() {
                             }
                         )
                     }
+
+                    //padding for the screens
                 ) { padding ->
                     Box(modifier = Modifier.padding(padding)) {
                         when (currentScreen) {
