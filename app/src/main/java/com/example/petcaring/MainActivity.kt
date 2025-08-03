@@ -71,7 +71,7 @@ class MainActivity : ComponentActivity() {
                                 onLoginSuccess = { currentScreen = AuthScreen.HOME },
                                 onNavigateToSignup = { currentScreen = AuthScreen.SIGNUP }
                             )
-
+                            //SIGNUP
                             AuthScreen.SIGNUP -> SignupScreen(
                                 viewModel = authViewModel,
                                 onSignupSuccess = { currentScreen = AuthScreen.HOME },
